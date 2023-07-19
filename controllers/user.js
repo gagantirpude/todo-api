@@ -10,10 +10,10 @@ import removeCookie from "../utils/removeCookie.js";
 export const userRegister = async (req, res, next) => {
   try {
     //get Data form Body
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
 
     //find Data form Database
-    let user = await User.findOne({ email, username });
+    let user = await User.findOne({ email });
 
     //* if User Exist
     if (user) {
@@ -24,7 +24,7 @@ export const userRegister = async (req, res, next) => {
 
       //* Create User
       user = await User.create({
-        username,
+        name,
         email,
         password: hashPassword,
       });
@@ -56,7 +56,7 @@ export const loginUser = async (req, res, next) => {
         return next(new ErrorHandler("Invalid Email & Password", 404));
       } else {
         //* Save Cookies and Sand Response
-        saveCookie(res, user, 200, `Welcome Back ${user.username}`);
+        saveCookie(res, user, 200, `Welcome Back ${user.name}`);
       }
     }
   } catch (error) {
@@ -79,5 +79,5 @@ export const userProfile = async (req, res, next) => {
 
 //! User Logout
 export const userLogout = async (req, res) => {
-  removeCookie(req, res, 200, true, `${req.user.username} Logout Successfully`);
+  removeCookie(req, res, 200, true, `${req.user.name} Logout Successfully`);
 };
