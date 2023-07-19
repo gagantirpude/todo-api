@@ -14,16 +14,9 @@ config({
   path: "./data/config.env",
 });
 
-//*s Middleware
+//* Middleware
 app.use(express.json());
 app.use(cookieParser());
-
-//* Routes
-app.use("/api/v1/users", userRouter);
-app.use("/api/v1/tasks", taskRouter);
-
-//* Error Handler
-app.use(errorMiddleware);
 
 //* For Communication with Frontend
 //* Enable CORS with custom options
@@ -38,9 +31,16 @@ app.use(
   })
 );
 
+//* Routes
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/tasks", taskRouter);
+
+//* Error Handler
+app.use(errorMiddleware);
+
 //* Root Directory
 app.get("/", (req, res) => {
-  res.send(`Hello Todo API`);
+  res.send(`Root Directory`);
 });
 
 //* Export
