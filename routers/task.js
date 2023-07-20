@@ -16,7 +16,7 @@ const router = express.Router();
 router.post("/create", isAuthenticated, taskCreate);
 
 //* Get User Task
-router.get("/get", isAuthenticated, getMyTask);
+router.get("/read", isAuthenticated, getMyTask);
 
 //*  Router with Route & Their Chining
 router

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 //* Create Structure By Using Mongoose Schema
 const mySchema = mongoose.Schema({
-  username: {
+  name: {
     require: true,
     type: String,
     // unique: true,
